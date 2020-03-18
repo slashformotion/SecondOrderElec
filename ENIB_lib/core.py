@@ -82,22 +82,27 @@ class General_Second_Order(Second_Order_LTI):
     def __init__(self,m,w0):
         self.num = num
         self.den = den
-
+        self.normalize()
+    
     @property
     def lti(self):
         return lti(self.num,self.den)
 
     @property
     def w0(self):
-        a_2_norm = self.den[0]/self.den[2]  #a_2_norm = 1/(w0**2)
+        a_2_norm = self.den[0]  #a_2_norm = 1/(w0**2)
         w0 = 1/np.sqrt(a_2_norm)
         return w0
 
     @property
     def m(self):
-        a_1_norm = self.den[1]/self.den[2]  #a_1_norm = 2m/(w0) ->m = a_1_norm *w0/2
+        a_1_norm = self.den[1]  #a_1_norm = 2m/(w0) ->m = a_1_norm *w0/2
         w0 = self.w0
         m = a_1_norm*w0/2
+
+    def normalize(self):
+        self.num = self.num/self.den[-1]
+        self.den = self.den/self.den[-1]
 
 
 class LP(Second_Order_LTI):
