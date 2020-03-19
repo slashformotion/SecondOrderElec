@@ -66,18 +66,20 @@ class Second_Order_LTI():
             plot_bode(w,Tjw)
         return w, Tjw
 
-    def predict_discontinuity(self,var_input,var_diff_input):
+    def discontinuities(self,var_input,var_diff_input):
         b2,b1,b0 = self.den
         a2,a1,a0 = self.den
         H = (1/(a2**2))*np.array([[a2*b2,0],[a2*b1-a1*b2,a2*b2]])
         x = np.array([[var_input],[var_diff_input]])
         y = np.dot(H,x)
-        return y[0],y[1]
+        return y
 
 
 class General_Second_Order(Second_Order_LTI):
 
     """ Class for Second order LTI systems"""
+    
+    type = "second_order"
 
     def __init__(self,m,w0):
         self.num = num
@@ -106,6 +108,8 @@ class General_Second_Order(Second_Order_LTI):
 
 
 class LP(Second_Order_LTI):
+    
+    type = "LP"
 
     def __init__(self,T0,m,w0):
         self.T0 = T0
@@ -136,6 +140,8 @@ class LP(Second_Order_LTI):
 
 class BP(Second_Order_LTI):
     
+    type = "BP"
+    
     def __init__(self,Tm,m,w0):
         self.Tm = Tm
         self.m = m
@@ -143,7 +149,7 @@ class BP(Second_Order_LTI):
     
     @property
     def num(self):
-        return np.array([2*self.m,self.Tm/(self.w0),0])
+        return np.array([2*self.m*self.Tm/(self.w0),0])
     
     @property
     def den(self):
@@ -152,6 +158,12 @@ class BP(Second_Order_LTI):
     @property
     def lti(self):
         return lti(self.num,self.den)
+    
+    @property
+    def wc(self):
+        wc1 = self.w0*(-self.m+np.sqrt(1+self.m**2))
+        wc2 = self.w0*(self.m+np.sqrt(1+self.m**2))
+        return [wc1,wc2]
 
     @property
     def delta_w(self):
@@ -160,6 +172,8 @@ class BP(Second_Order_LTI):
 
 class HP(Second_Order_LTI):
     
+    type = "HP"
+    
     def __init__(self,Too,m,w0):
         self.Too = Too
         self.m = m
@@ -167,7 +181,7 @@ class HP(Second_Order_LTI):
     
     @property
     def num(self):
-        return np.array([self.T0/(self.w0**2),0,0])
+        return np.array([self.Too/(self.w0**2),0,0])
     
     @property
     def den(self):
@@ -186,8 +200,9 @@ class HP(Second_Order_LTI):
         return 1/(2*self.m*np.sqrt(1*self.m**2))
 
 
-
 class Notch(Second_Order_LTI):
+    
+    type = "Notch"
     
     def __init__(self,T0,m,w0):
         self.T0 = T0
@@ -205,7 +220,14 @@ class Notch(Second_Order_LTI):
     @property
     def lti(self):
         return lti(self.num,self.den)
+    
+    @property
+    def wc(self):
+        wc1 = self.w0*(-self.m+np.sqrt(1+self.m**2))
+        wc2 = self.w0*(self.m+np.sqrt(1+self.m**2))
+        return [wc1,wc2]
 
     @property
     def delta_w(self):
         return 2*self.m*self.w0
+
