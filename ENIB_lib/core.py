@@ -82,6 +82,13 @@ class General_Second_Order(Second_Order_LTI):
     type = "second_order"
 
     def __init__(self,m,w0):
+        """
+        General Second Order filter instance constructor
+
+        Args:
+            m (float): damping coefficient
+            w0 (float): caracteristic frequency
+        """
         self.num = num
         self.den = den
         self.normalize()
@@ -108,10 +115,25 @@ class General_Second_Order(Second_Order_LTI):
 
 
 class LP(Second_Order_LTI):
+    """
+    Low Pass filter
+
+    Args:
+        Second_Order_LTI (class): General class for second order LTI
+    
+    """
     
     type = "LP"
 
     def __init__(self,T0,m,w0):
+        """
+        LP instance constructor
+
+        Args:
+            T0 (float): amplification
+            m (float): damping coefficient
+            w0 (float): cut-off frequency
+        """
         self.T0 = T0
         self.m = m
         self.w0 = w0
@@ -139,10 +161,25 @@ class LP(Second_Order_LTI):
 
 
 class BP(Second_Order_LTI):
+    """
+    Band Pass filter class
+
+    Args:
+        Second_Order_LTI (class):  General class for second order LTI
+    
+    """
     
     type = "BP"
     
     def __init__(self,Tm,m,w0):
+        """
+        Band Pass filter instance constructor
+
+        Args:
+            Tm (float): amplification
+            m (float): damping coefficient
+            w0 (float): center frequency
+        """
         self.Tm = Tm
         self.m = m
         self.w0 = w0
@@ -171,10 +208,25 @@ class BP(Second_Order_LTI):
 
 
 class HP(Second_Order_LTI):
+    """
+    High Pass filter class
+
+    Args:
+        Second_Order_LTI (class):  General class for second order LTI
     
+    """
+
     type = "HP"
     
     def __init__(self,Too,m,w0):
+        """
+        High Pass filter instance constructor
+
+        Args:
+            Too (float): amplification
+            m (float): damping coefficient
+            w0 (float): cut-off frequency
+        """
         self.Too = Too
         self.m = m
         self.w0 = w0
@@ -201,10 +253,25 @@ class HP(Second_Order_LTI):
 
 
 class Notch(Second_Order_LTI):
+    """
+    Notch filter class
+
+    Args:
+        Second_Order_LTI (class):  General class for second order LTI
+    
+    """
     
     type = "Notch"
     
     def __init__(self,T0,m,w0):
+        """
+        Notch filter instance constructor
+
+        Args:
+            T0 (float): amplification
+            m (float): damping coefficient
+            w0 (float): center frequency
+        """
         self.T0 = T0
         self.m = m
         self.w0 = w0
