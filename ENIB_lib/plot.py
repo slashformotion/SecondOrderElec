@@ -22,5 +22,5 @@ def plot_pzmap(poles,zeros):
 
     plt.axis('scaled')
     plt.grid()
-    plt.xlabel("Real Part");
-    plt.ylabel("Imag Part");
+    plt.xlabel("Real Part")
+    plt.ylabel("Imag Part")
