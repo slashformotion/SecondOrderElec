@@ -9,7 +9,6 @@ This repo is a for of [ENIB_elec](https://github.com/vincentchoqueuse/ENIB_elec)
 ### Dependancies
 
 * numpy
-* scipy
 * matplotlib
 
 ### Installing
