@@ -17,7 +17,7 @@ For now, you need to download the ENIB_elec folder and import it manually
 
 ### Exemples
 
-You will find exemples [here](https://github.com/slashformotion/ENIB_elec/tree/master/exemples)
+You will find exemples [here](https://github.com/slashformotion/ENIB_elec/tree/master/exemples).
 
 ### Help
 
