@@ -2,40 +2,41 @@ import numpy as np
 from scipy.signal import lti
 from .plot import plot_time, plot_bode, plot_pzmap
 
-class Second_Order_LTI():
-    
+
+class Second_Order_LTI:
+
     """ General Class for Second order LTI systems"""
-    
+
     @property
     def R(self):
-        if self.m < 1 :
-            R = np.exp(2*np.pi*self.m/np.sqrt(1-self.m**2))
+        if self.m < 1:
+            R = np.exp(2 * np.pi * self.m / np.sqrt(1 - self.m ** 2))
         else:
             R = 0
         return R
-    
+
     @property
     def wp(self):
         if self.m < 1:
-            wp = self.w0*np.sqrt(1-self.m**2)
+            wp = self.w0 * np.sqrt(1 - self.m ** 2)
         else:
             wp = None
         return wp
-    
+
     @property
     def Tp(self):
-        if self.wp :
-            Fp = self.wp/(2*np.pi)
-            Tp = 1/Fp
-        else :
+        if self.wp:
+            Fp = self.wp / (2 * np.pi)
+            Tp = 1 / Fp
+        else:
             Tp = None
         return Tp
-    
+
     @property
     def Q(self):
-        return 1/(2*self.m)
-    
-    def pzmap(self,plot=True):
+        return 1 / (2 * self.m)
+
+    def pzmap(self, plot=True):
         """return poles and zeros.
 
 
@@ -47,11 +48,11 @@ class Second_Order_LTI():
         """
         poles = self.lti.poles
         zeros = self.lti.zeros
-        if plot == True :
-            plot_pzmap(poles,zeros)
-        return poles,zeros
-    
-    def impulse(self, X0=None, T=None, N=None,plot=True):
+        if plot == True:
+            plot_pzmap(poles, zeros)
+        return poles, zeros
+
+    def impulse(self, X0=None, T=None, N=None, plot=True):
         """return impulse response from continuous-time system. (in this case, self)
 
         Args:
@@ -64,12 +65,12 @@ class Second_Order_LTI():
             tuple: (array t: time (x-axis),
                     array s: impulse response (y-axis)
         """
-        t,s = self.lti.impulse(X0=X0, T=T, N=N)
-        if plot == True :
-            plot_time(t,s)
-        return t,s
-    
-    def step(self,  X0=None, T=None, N=None,plot=True):
+        t, s = self.lti.impulse(X0=X0, T=T, N=N)
+        if plot == True:
+            plot_time(t, s)
+        return t, s
+
+    def step(self, X0=None, T=None, N=None, plot=True):
         """return step response
 
         Args:
@@ -81,12 +82,12 @@ class Second_Order_LTI():
         Returns:
             [type]: [description]
         """
-        t,s = self.lti.step(X0=X0, T=T, N=N)
-        if plot == True :
-            plot_time(t,s)
-        return t,s
-    
-    def output(self, U, T, X0=None,plot=True):
+        t, s = self.lti.step(X0=X0, T=T, N=N)
+        if plot == True:
+            plot_time(t, s)
+        return t, s
+
+    def output(self, U, T, X0=None, plot=True):
         """return output of a continuous-time linear system.
 
         Args:
@@ -98,12 +99,12 @@ class Second_Order_LTI():
         Returns:
             tuple(1D ndarray, 1D ndarray, ndarray): Time values for the output, system output, time evolution of the state vector 
         """
-        t,s,x = self.lti.output(U, T, X0=X0)
-        if plot == True :
-            plot_time(t,s)
-        return t,s,x
+        t, s, x = self.lti.output(U, T, X0=X0)
+        if plot == True:
+            plot_time(t, s)
+        return t, s, x
 
-    def freqresp(self, w=None, n=10000,plot=True):
+    def freqresp(self, w=None, n=10000, plot=True):
         """return frequency response. (This method can plot it too)
 
         Args:
@@ -115,27 +116,27 @@ class Second_Order_LTI():
             tuple(1D ndarray, 1D ndarray): (frequency array [rad/s], array of complex magnitude values)
         """
         w, Tjw = self.lti.freqresp(w=w, n=n)
-        if plot == True :
-            plot_bode(w,Tjw)
+        if plot == True:
+            plot_bode(w, Tjw)
         return w, Tjw
 
-    def discontinuities(self,var_input,var_diff_input):
+    def discontinuities(self, var_input, var_diff_input):
         # TODO: understand wtf this is
-        b2,b1,b0 = self.den
-        a2,a1,a0 = self.den
-        H = (1/(a2**2))*np.array([[a2*b2,0],[a2*b1-a1*b2,a2*b2]])
-        x = np.array([[var_input],[var_diff_input]])
-        y = np.dot(H,x)
+        b2, b1, b0 = self.den
+        a2, a1, a0 = self.den
+        H = (1 / (a2 ** 2)) * np.array([[a2 * b2, 0], [a2 * b1 - a1 * b2, a2 * b2]])
+        x = np.array([[var_input], [var_diff_input]])
+        y = np.dot(H, x)
         return y
 
 
 class General_Second_Order(Second_Order_LTI):
 
     """ Class for Second order LTI systems"""
-    
+
     type = "second_order"
 
-    def __init__(self,m,w0):
+    def __init__(self, m, w0):
         """
         General Second Order filter instance constructor
 
@@ -146,10 +147,10 @@ class General_Second_Order(Second_Order_LTI):
         self.num = num
         self.den = den
         self.normalize()
-    
+
     @property
     def lti(self):
-        return lti(self.num,self.den)
+        return lti(self.num, self.den)
 
     @property
     def w0(self):
@@ -158,8 +159,8 @@ class General_Second_Order(Second_Order_LTI):
         Returns:
             float: natural frequency (commonly known as w0) 
         """
-        a_2_norm = self.den[0]  #a_2_norm = 1/(w0**2)
-        w0 = 1/np.sqrt(a_2_norm)
+        a_2_norm = self.den[0]  # a_2_norm = 1/(w0**2)
+        w0 = 1 / np.sqrt(a_2_norm)
         return w0
 
     @property
@@ -169,16 +170,16 @@ class General_Second_Order(Second_Order_LTI):
         Returns:
             float: damping factor, or damping coefficient
         """
-        a_1_norm = self.den[1]  #a_1_norm = 2m/(w0) ->m = a_1_norm *w0/2
+        a_1_norm = self.den[1]  # a_1_norm = 2m/(w0) ->m = a_1_norm *w0/2
         w0 = self.w0
-        m = a_1_norm*w0/2
+        m = a_1_norm * w0 / 2
         return m
 
     def normalize(self):
         """normalize the linear system
         """
-        self.num = self.num/self.den[-1]
-        self.den = self.den/self.den[-1]
+        self.num = self.num / self.den[-1]
+        self.den = self.den / self.den[-1]
 
 
 class LP(Second_Order_LTI):
@@ -189,10 +190,10 @@ class LP(Second_Order_LTI):
         Second_Order_LTI (class): General class for second order LTI
     
     """
-    
+
     type = "LP"
 
-    def __init__(self,T0,m,w0):
+    def __init__(self, T0, m, w0):
         """
         LP instance constructor
 
@@ -204,7 +205,7 @@ class LP(Second_Order_LTI):
         self.T0 = T0
         self.m = m
         self.w0 = w0
-    
+
     @property
     def num(self):
         """System numerator
@@ -213,7 +214,7 @@ class LP(Second_Order_LTI):
             float: numerator (here T0)
         """
         return self.T0
-    
+
     @property
     def den(self):
         """System denominator
@@ -221,20 +222,19 @@ class LP(Second_Order_LTI):
         Returns:
             array_like: denominator
         """
-        return np.array([1/(self.w0**2),2*self.m/self.w0,1])
+        return np.array([1 / (self.w0 ** 2), 2 * self.m / self.w0, 1])
 
     @property
     def lti(self):
-        return lti(self.num,self.den)
+        return lti(self.num, self.den)
 
     @property
     def wr(self):
-        return self.w0*np.sqrt(1-2*self.m**2)
+        return self.w0 * np.sqrt(1 - 2 * self.m ** 2)
 
     @property
     def MdB(self):
-        return 1/(2*self.m*np.sqrt(1*self.m**2))
-
+        return 1 / (2 * self.m * np.sqrt(1 * self.m ** 2))
 
 
 class BP(Second_Order_LTI):
@@ -245,10 +245,10 @@ class BP(Second_Order_LTI):
         Second_Order_LTI (class):  General class for second order LTI
     
     """
-    
+
     type = "BP"
-    
-    def __init__(self,Tm,m,w0):
+
+    def __init__(self, Tm, m, w0):
         """
         Band Pass filter instance constructor
 
@@ -260,7 +260,7 @@ class BP(Second_Order_LTI):
         self.Tm = Tm
         self.m = m
         self.w0 = w0
-    
+
     @property
     def num(self):
         """System Numerator
@@ -268,8 +268,8 @@ class BP(Second_Order_LTI):
         Returns:
             array_like: system's numerator
         """
-        return np.array([2*self.m*self.Tm/(self.w0),0])
-    
+        return np.array([2 * self.m * self.Tm / (self.w0), 0])
+
     @property
     def den(self):
         """System Denominator
@@ -277,8 +277,8 @@ class BP(Second_Order_LTI):
         Returns:
             array_like: system's denominator
         """
-        return np.array([1/(self.w0**2),2*self.m/self.w0,1])
-    
+        return np.array([1 / (self.w0 ** 2), 2 * self.m / self.w0, 1])
+
     @property
     def lti(self):
         """Continuous-time linear time invariant system
@@ -286,8 +286,8 @@ class BP(Second_Order_LTI):
         Returns:
             scipy.signal.lti: lti object
         """
-        return lti(self.num,self.den)
-    
+        return lti(self.num, self.den)
+
     @property
     def wc(self):
         """Filter pass band
@@ -295,9 +295,9 @@ class BP(Second_Order_LTI):
         Returns:
             list(float, float): start and stop frequencies of the pass band
         """
-        wc1 = self.w0*(-self.m+np.sqrt(1+self.m**2))
-        wc2 = self.w0*(self.m+np.sqrt(1+self.m**2))
-        return [wc1,wc2]
+        wc1 = self.w0 * (-self.m + np.sqrt(1 + self.m ** 2))
+        wc2 = self.w0 * (self.m + np.sqrt(1 + self.m ** 2))
+        return [wc1, wc2]
 
     @property
     def delta_w(self):
@@ -306,7 +306,7 @@ class BP(Second_Order_LTI):
         Returns:
             float: bandwidth of the pass band
         """
-        return 2*self.m*self.w0
+        return 2 * self.m * self.w0
 
 
 class HP(Second_Order_LTI):
@@ -319,8 +319,8 @@ class HP(Second_Order_LTI):
     """
 
     type = "HP"
-    
-    def __init__(self,Too,m,w0):
+
+    def __init__(self, Too, m, w0):
         """
         High Pass filter instance constructor
 
@@ -332,7 +332,7 @@ class HP(Second_Order_LTI):
         self.Too = Too
         self.m = m
         self.w0 = w0
-    
+
     @property
     def num(self):
         """System Numerator
@@ -340,8 +340,8 @@ class HP(Second_Order_LTI):
         Returns:
             array_like: system's numerator
         """
-        return np.array([self.Too/(self.w0**2),0,0])
-    
+        return np.array([self.Too / (self.w0 ** 2), 0, 0])
+
     @property
     def den(self):
         """System Denominator
@@ -349,8 +349,8 @@ class HP(Second_Order_LTI):
         Returns:
             array_like: system's denominator
         """
-        return np.array([1/(self.w0**2),2*self.m/self.w0,1])
-    
+        return np.array([1 / (self.w0 ** 2), 2 * self.m / self.w0, 1])
+
     @property
     def lti(self):
         """Continuous-time linear time invariant system
@@ -358,15 +358,15 @@ class HP(Second_Order_LTI):
         Returns:
             scipy.signal.lti: lti object
         """
-        return lti(self.num,self.den)
+        return lti(self.num, self.den)
 
     @property
     def wr(self):
-        return self.w0/np.sqrt(1-2*self.m**2)
+        return self.w0 / np.sqrt(1 - 2 * self.m ** 2)
 
     @property
     def MdB(self):
-        return 1/(2*self.m*np.sqrt(1*self.m**2))
+        return 1 / (2 * self.m * np.sqrt(1 * self.m ** 2))
 
 
 class Notch(Second_Order_LTI):
@@ -377,10 +377,10 @@ class Notch(Second_Order_LTI):
         Second_Order_LTI (class):  General class for second order LTI
     
     """
-    
+
     type = "Notch"
-    
-    def __init__(self,T0,m,w0):
+
+    def __init__(self, T0, m, w0):
         """
         Notch filter instance constructor
 
@@ -392,15 +392,15 @@ class Notch(Second_Order_LTI):
         self.T0 = T0
         self.m = m
         self.w0 = w0
-    
+
     @property
     def num(self):
-        return np.array([self.T0/(self.w0**2),0,self.T0])
-    
+        return np.array([self.T0 / (self.w0 ** 2), 0, self.T0])
+
     @property
     def den(self):
-        return np.array([1/(self.w0**2),2*self.m/self.w0,1])
-    
+        return np.array([1 / (self.w0 ** 2), 2 * self.m / self.w0, 1])
+
     @property
     def lti(self):
         """Continuous-time linear time invariant system
@@ -408,8 +408,8 @@ class Notch(Second_Order_LTI):
         Returns:
             scipy.signal.lti: lti object
         """
-        return lti(self.num,self.den)
-    
+        return lti(self.num, self.den)
+
     @property
     def wc(self):
         """Rejected band
@@ -417,11 +417,10 @@ class Notch(Second_Order_LTI):
         Returns:
             list(float, float): start and stop frequencies of the rejected band stop
         """
-        wc1 = self.w0*(-self.m+np.sqrt(1+self.m**2))
-        wc2 = self.w0*(self.m+np.sqrt(1+self.m**2))
-        return [wc1,wc2]
+        wc1 = self.w0 * (-self.m + np.sqrt(1 + self.m ** 2))
+        wc2 = self.w0 * (self.m + np.sqrt(1 + self.m ** 2))
+        return [wc1, wc2]
 
     @property
     def delta_w(self):
-        return 2*self.m*self.w0
-
+        return 2 * self.m * self.w0
