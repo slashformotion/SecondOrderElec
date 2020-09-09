@@ -15,10 +15,10 @@ This repo is a for of [ENIB_elec](https://github.com/vincentchoqueuse/ENIB_elec)
 
 For now, you need to download the ENIB_elec folder and import it manually
 
-## Help
+### Help
 
 Create an issue [here](https://github.com/slashformotion/ENIB_elec/issues).
 
-## Acknowledgments
+### Acknowledgments
 
 Again, most of the work is from [Vincent Choqueuse](https://github.com/vincentchoqueuse).
