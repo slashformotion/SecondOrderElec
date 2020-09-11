@@ -1,4 +1,4 @@
-# ENIB Electronic Lib
+# Electronic Lib for second order system
 
 A simple python library for the analysis of second order system
 
@@ -13,15 +13,15 @@ This repo is a fork of [ENIB_elec](https://github.com/vincentchoqueuse/ENIB_elec
 
 ### Installing
 
-For now, you need to download the ENIB_elec folder and import it manually
+For now, you need to download the SecondOrderElec folder and import it manually
 
 ### Exemples
 
-You will find exemples [here](https://github.com/slashformotion/ENIB_elec/tree/master/exemples).
+You will find exemples [here](https://github.com/slashformotion/SecondOrderElec/tree/master/exemples).
 
 ### Help
 
-Create an issue [here](https://github.com/slashformotion/ENIB_elec/issues).
+Create an issue [here](https://github.com/slashformotion/SecondOrderElec/issues).
 
 ### Acknowledgments
 
