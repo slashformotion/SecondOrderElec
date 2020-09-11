@@ -144,8 +144,7 @@ class General_Second_Order(Second_Order_LTI):
             m (float): damping coefficient
             w0 (float): caracteristic frequency
         """
-        self.num = num
-        self.den = den
+        
         self.normalize()
 
     @property
