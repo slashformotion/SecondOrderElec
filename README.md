@@ -1,5 +1,7 @@
 # Electronic Lib for second order system
 
+![](https://img.shields.io/travis/slashformotion/SecondOrderElec/master?style=flat-square)
+
 A simple python library for the analysis of second order system
 
 This repo is a fork of [ENIB_elec](https://github.com/vincentchoqueuse/ENIB_elec) by [Vincent Choqueuse](https://github.com/vincentchoqueuse).
@@ -10,14 +12,26 @@ This repo is a fork of [ENIB_elec](https://github.com/vincentchoqueuse/ENIB_elec
 
 * numpy
 * matplotlib
+* scipy
 
 ### Installing
 
-For now, you need to download the SecondOrderElec folder and import it manually
+Simple:
+```bash
+pip install SecondOrderElec
+```
 
 ### Exemples
 
-You will find exemples [here](https://github.com/slashformotion/SecondOrderElec/tree/master/exemples).
+In this library you will find four main models for second order filters: 
+
+- Low-Pass(```SecondOrderElec.LP```)
+- High-Pass (```SecondOrderElec.HP```
+- Band-Pass (```SecondOrderElec.BP```)
+- Notch (```SecondOrderElec.Notch```)
+
+
+You will find others exemples [here](https://github.com/slashformotion/SecondOrderElec/tree/master/exemples).
 
 ### Help
 
