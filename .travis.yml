@@ -13,7 +13,7 @@ before_install:
 
 # command to install dependencies
 install:
-  - pip install --user -r requirements-test.txt
+  - pip install -r requirements-test.txt
 # command to run tests
 script:
   - python -m unittest discover tests -v
