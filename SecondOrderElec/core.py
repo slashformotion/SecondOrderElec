@@ -145,7 +145,7 @@ class General_Second_Order(Second_Order_LTI):
             w0 (float): caracteristic frequency
         """
 
-        self.normalize()
+        self.normalize()  
 
     @property
     def lti(self):
