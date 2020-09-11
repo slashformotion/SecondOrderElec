@@ -91,6 +91,7 @@ class test_LP(unittest.TestCase):
         Q = filter_instance.Q
         self.assertIsInstance(Q, (float, int))
 
+
 class test_BP(unittest.TestCase):
     def get_one(self, Tm=1.1, m=0.2, w0=6000):
         return BP(Tm, m, w0)
@@ -104,18 +105,19 @@ class test_BP(unittest.TestCase):
         filter_instance = self.get_one()
         den = filter_instance.den
         self.assertIsInstance(den, np.ndarray)
-        self.assertEqual(len(den), 3) 
+        self.assertEqual(len(den), 3)
 
     def test_wc(self):
         filter_instance = self.get_one()
         wc = filter_instance.wc
         self.assertIsInstance(wc, list)
         self.assertGreater(wc[1], wc[0])
-    
+
     def test_delta_w(self):
         filter_instance = self.get_one()
         delta_w = filter_instance.delta_w
         self.assertIsInstance(delta_w, (int, float))
+
 
 class test_HP(unittest.TestCase):
     def get_one(self, Too=1.1, m=0.2, w0=6000):
@@ -126,12 +128,12 @@ class test_HP(unittest.TestCase):
         num = filter_instance.num
         self.assertIsInstance(num, np.ndarray)
         self.assertEqual(len(num), 3)
-    
+
     def test_den(self):
         filter_instance = self.get_one()
         den = filter_instance.den
         self.assertIsInstance(den, np.ndarray)
-        self.assertEqual(len(den), 3) 
+        self.assertEqual(len(den), 3)
 
     def test_lti(self):
         filter_instance = self.get_one()
@@ -148,6 +150,7 @@ class test_HP(unittest.TestCase):
         MdB = filter_instance.MdB
         self.assertIsInstance(MdB, (float, int))
 
+
 class test_Notch(unittest.TestCase):
     def get_one(self, T0=1.1, m=0.2, w0=6000):
         return Notch(T0, m, w0)
@@ -157,12 +160,12 @@ class test_Notch(unittest.TestCase):
         num = filter_instance.num
         self.assertIsInstance(num, np.ndarray)
         self.assertEqual(len(num), 3)
-    
+
     def test_den(self):
         filter_instance = self.get_one()
         den = filter_instance.den
         self.assertIsInstance(den, np.ndarray)
-        self.assertEqual(len(den), 3) 
+        self.assertEqual(len(den), 3)
 
     def test_wc(self):
         filter_instance = self.get_one()
