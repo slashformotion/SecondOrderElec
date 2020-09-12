@@ -1,3 +1,5 @@
+test:
+	python -m unittest discover tests -v -f
 black:
 	black .
 
