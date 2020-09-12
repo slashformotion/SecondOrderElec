@@ -1,3 +1,8 @@
+##
+# This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
+#
+# @authors: vincentchoqueuse, slashformotion
+##
 import numpy as np
 from scipy.signal import lti
 from .plot import plot_time, plot_bode, plot_pzmap

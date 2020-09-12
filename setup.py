@@ -16,7 +16,7 @@ setup(
     license="MIT",
     author="slashformotion",
     author_email="slashformotion@protonmail.com",
-    description="A set of tools to work with continuous-time system. You will find various second order electronic filters models.",
+    description="A python module to work with continuous-time system. You will find various second order electronic filters models.",
     packages=["SecondOrderElec"],
     long_description=long_description,
     long_description_content_type="text/markdown",
