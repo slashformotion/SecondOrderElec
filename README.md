@@ -1,6 +1,6 @@
 # Electronic Lib for second order system
 
-![](https://img.shields.io/travis/slashformotion/SecondOrderElec/master?style=flat-square)
+![](https://img.shields.io/travis/slashformotion/SecondOrderElec/master?style=flat-square) ![PyPI - Downloads](https://img.shields.io/pypi/dm/SecondOrderElec?style=flat-square)
 
 A simple python library for the analysis of second order system
 
@@ -29,6 +29,18 @@ In this library you will find four main models for second order filters:
 - High-Pass (```SecondOrderElec.HP```
 - Band-Pass (```SecondOrderElec.BP```)
 - Notch (```SecondOrderElec.Notch```)
+
+```Python
+from SecondOrderElec import LP
+import numpy as np
+
+w = np.logspace(1,3,1000)
+
+filter_instance = LP(T0=1, m=1.1, w0=6000)
+t,s = filter_instance.freqresp(w=w, plot=True)
+```
+![Module](static/img/fresqresp_LP_module.svg) ![Argument](static/img/fresqresp_LP_arg.svg)
+
 
 
 You will find others exemples [here](https://github.com/slashformotion/SecondOrderElec/tree/master/exemples).
