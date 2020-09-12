@@ -4,7 +4,73 @@ import numpy as np
 from SecondOrderElec import LP, BP, HP, Notch
 
 # we can't really test Second_Order_LTI so we will check the inheriting class
-class test_LP(unittest.TestCase):
+
+class Common_Second_Order_LTI(object):
+    def test_wp(self):
+        filter_instance = self.get_one()
+        wp = filter_instance.wp
+        self.assertIsInstance(wp, (float, int))
+
+    def test_Tp(self):
+        filter_instance = self.get_one()
+        Tp = filter_instance.Tp
+        self.assertIsInstance(Tp, (float, int))
+
+    def test_R(self):
+        filter_instance = self.get_one()
+        R = filter_instance.R
+        self.assertIsInstance(R, (float, int))
+
+    def test_fresqresp(self):
+        filter_instance = self.get_one()
+        w = np.logspace(1, 4, 1000)
+        t, s = filter_instance.freqresp(w=w, plot=False)
+        self.assertIsInstance(t, np.ndarray)
+        self.assertIsInstance(s, np.ndarray)
+        self.assertEqual(len(t), len(s))
+
+    def test_output(self):
+        filter_instance = self.get_one(w0=6)
+
+        x = np.linspace(1, 100, 10000)
+        y = np.sin(x * 1000000000)  # high frequency sinusoidal
+
+        t, s, state_vector = filter_instance.output(U=y, T=x, plot=False)
+        self.assertIsInstance(t, np.ndarray)
+        self.assertIsInstance(s, np.ndarray)
+        self.assertIsInstance(state_vector, np.ndarray)
+
+    def test_step(self):
+        filter_instance = self.get_one()
+        t, s = filter_instance.step(plot=False)
+        self.assertIsInstance(t, np.ndarray)
+        self.assertIsInstance(s, np.ndarray)
+
+    def test_pzmap(self):
+        filter_instance = self.get_one()
+        poles, zeros = filter_instance.pzmap(plot=False)
+        self.assertIsInstance(poles, np.ndarray)
+        self.assertIsInstance(zeros, np.ndarray)
+
+class Common_General_Second_Order(Common_Second_Order_LTI):
+
+    def test_lti(self):
+        filter_instance = self.get_one()
+        lti = filter_instance.lti
+        self.assertIsInstance(lti, scipy.signal.lti)
+
+    def test_w0(self):
+        filter_instance = self.get_one()
+        w0 = filter_instance.w0
+        self.assertIsInstance(w0, (float, int))
+
+    def test_w0(self):
+        filter_instance = self.get_one()
+        m = filter_instance.m
+        self.assertIsInstance(m, (float, int))
+
+
+class test_LP(unittest.TestCase, Common_General_Second_Order):
     def get_one(self, T0=0.8, m=0.2, w0=6000):
         return LP(T0, m, w0)
 
@@ -19,10 +85,6 @@ class test_LP(unittest.TestCase):
         print(den)
         self.assertEqual(len(den), 3)
 
-    def test_lti(self):
-        filter_instance = self.get_one()
-        lti = filter_instance.lti
-        self.assertIsInstance(lti, scipy.signal.lti)
 
     def test_wr(self):
         filter_instance = self.get_one()
@@ -92,7 +154,7 @@ class test_LP(unittest.TestCase):
         self.assertIsInstance(Q, (float, int))
 
 
-class test_BP(unittest.TestCase):
+class test_BP(unittest.TestCase, Common_Second_Order_LTI):
     def get_one(self, Tm=1.1, m=0.2, w0=6000):
         return BP(Tm, m, w0)
 
@@ -119,7 +181,7 @@ class test_BP(unittest.TestCase):
         self.assertIsInstance(delta_w, (int, float))
 
 
-class test_HP(unittest.TestCase):
+class test_HP(unittest.TestCase, Common_General_Second_Order):
     def get_one(self, Too=1.1, m=0.2, w0=6000):
         return HP(Too, m, w0)
 
@@ -151,7 +213,7 @@ class test_HP(unittest.TestCase):
         self.assertIsInstance(MdB, (float, int))
 
 
-class test_Notch(unittest.TestCase):
+class test_Notch(unittest.TestCase, Common_Second_Order_LTI):
     def get_one(self, T0=1.1, m=0.2, w0=6000):
         return Notch(T0, m, w0)
 
