@@ -8,11 +8,23 @@ import numpy as np
 
 
 def plot_time(t, s):
+    """plot s function of t
+
+    Args:
+        t (array_like): time or variable x-axis
+        s (array_like): y-axis variable
+    """
     plt.plot(t, s)
     plt.xlabel("time (s)")
 
 
 def plot_bode(w, Tjw):
+    """plot the fresquency reponse
+
+    Args:
+        w (array_like): angular velocity (rad/s)
+        Tjw (array_like): frequency response
+    """
     plt.figure("mag")
     plt.loglog(w, np.abs(Tjw))
     plt.ylabel("Modulus")
@@ -25,6 +37,12 @@ def plot_bode(w, Tjw):
 
 
 def plot_pzmap(poles, zeros):
+    """plot poles and zeros
+
+    Args:
+        poles (array_like: poles
+        zeros (array_like): zeros
+    """
     plt.plot(poles.real, poles.imag, "x", markersize=5)
     plt.plot(zeros.real, zeros.imag, "o", markersize=5)
 
