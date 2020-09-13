@@ -2,9 +2,7 @@
 
 ![](https://img.shields.io/travis/slashformotion/SecondOrderElec/master?style=flat-square) ![PyPI - Downloads](https://img.shields.io/pypi/dm/SecondOrderElec?style=flat-square)
 
-A simple python library for the analysis of second order system
-
-This repo is a fork of [ENIB_elec](https://github.com/vincentchoqueuse/ENIB_elec) by [Vincent Choqueuse](https://github.com/vincentchoqueuse).
+A simple python library for the analysis of second order system.
 
 ## Getting Started
 ---
@@ -51,7 +49,12 @@ Create an issue [here](https://github.com/slashformotion/SecondOrderElec/issues)
 
 ### Acknowledgments
 
-Again, most of the work is from [Vincent Choqueuse](https://github.com/vincentchoqueuse).
+Most of the work is from [Vincent Choqueuse](https://github.com/vincentchoqueuse).
+
+### Maintainers
+
+- [@vincentchocqueuse](https://github.com/vincentchoqueuse)
+- [@slashformotion](https://github.com/slashformotion)
 
 ### Licence
 
