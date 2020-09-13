@@ -28,7 +28,7 @@ def plot_bode(w, Tjw):
     plt.figure("mag")
     plt.loglog(w, np.abs(Tjw))
     plt.ylabel("Modulus")
-    plt.xlabel("Angular Frequency (rad/s)")
+    plt.xlabel("Amplification")
 
     plt.figure("phase")
     plt.semilogx(w, 180 * np.angle(Tjw) / np.pi)
