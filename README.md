@@ -19,6 +19,10 @@ Simple:
 pip install SecondOrderElec
 ```
 
+### Documentation
+
+It's on [readthedoc](https://secondorderelec.readthedocs.io/en/latest/).
+
 ### Exemples
 
 In this library you will find four main models for second order filters: 
