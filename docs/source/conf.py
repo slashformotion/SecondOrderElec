@@ -62,7 +62,7 @@ autodoc_mock_imports = ["numpy", "scipy", "matplotlib", "scipy.signal"]
 
 
 autoclass_content = "both"
-
+source_suffix = '.rst'
 
 # from packaging.version import parse
 # from SecondOrderElec.version import version
