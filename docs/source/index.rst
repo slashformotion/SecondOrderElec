@@ -39,7 +39,7 @@ General
    :maxdepth: 1
 
    installation
-   modules
+   module
 
 
 
