@@ -1,6 +1,6 @@
 # Electronic Lib for second order system
 
-![](https://img.shields.io/travis/slashformotion/SecondOrderElec/master?style=flat-square) ![PyPI - Downloads](https://img.shields.io/pypi/dm/SecondOrderElec?style=flat-square)
+![](https://img.shields.io/travis/com/slashformotion/SecondOrderElec/master?label=test%20%28master%29&style=flat-square) ![PyPI - Downloads](https://img.shields.io/pypi/dm/SecondOrderElec?style=flat-square)
 
 A simple python library for the analysis of second order system.
 
