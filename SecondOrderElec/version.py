@@ -1,1 +1,3 @@
-version = "0.0.1"
+"""THIS FILE IS GENERATED FROM beem SETUP.PY."""
+    version = '0.0.2'
+    
