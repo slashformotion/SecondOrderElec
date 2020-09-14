@@ -9,11 +9,9 @@ requires = ["numpy", "matplotlib", "scipy"]
 
 def write_version_py(filename):
     """Write version."""
-    cnt = """\"""THIS FILE IS GENERATED FROM beem SETUP.PY.\"""
-    version = '%(version)s'
-    """
+    cnt = f"\"\"\"THIS FILE IS GENERATED FROM beem SETUP.PY.\"\"\"\nversion = '{VERSION}s'"
     with open(filename, "w") as a:
-        a.write(cnt % {"version": VERSION})
+        a.write(cnt)
 
 
 if __name__ == "__main__":
