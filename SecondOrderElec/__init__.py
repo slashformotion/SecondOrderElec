@@ -7,4 +7,5 @@
 # import of filter models
 from .core import LP, HP, BP, Notch
 from .version import version
+
 __version__ = version

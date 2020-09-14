@@ -6,21 +6,22 @@ tests_require = ["unittest", "sphinx"]
 
 requires = ["numpy", "matplotlib", "scipy"]
 
+
 def write_version_py(filename):
     """Write version."""
     cnt = """\"""THIS FILE IS GENERATED FROM beem SETUP.PY.\"""
     version = '%(version)s'
     """
-    with open(filename, 'w') as a:
-        a.write(cnt % {'version': VERSION})
+    with open(filename, "w") as a:
+        a.write(cnt % {"version": VERSION})
+
 
 if __name__ == "__main__":
-    
+
     write_version_py("SecondOrderElec/version.py")
-    
+
     with open("README.md", "r") as fh:
         long_description = fh.read()
-
 
     setup(
         name="SecondOrderElec",

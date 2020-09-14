@@ -5,6 +5,7 @@ from SecondOrderElec import LP, BP, HP, Notch
 
 # we can't really test Second_Order_LTI so we will check the inheriting class
 
+
 class Common_Second_Order_LTI(object):
     def test_wp(self):
         filter_instance = self.get_one()
@@ -52,8 +53,8 @@ class Common_Second_Order_LTI(object):
         self.assertIsInstance(poles, np.ndarray)
         self.assertIsInstance(zeros, np.ndarray)
 
-class Common_General_Second_Order(Common_Second_Order_LTI):
 
+class Common_General_Second_Order(Common_Second_Order_LTI):
     def test_lti(self):
         filter_instance = self.get_one()
         lti = filter_instance.lti
@@ -84,7 +85,6 @@ class test_LP(unittest.TestCase, Common_General_Second_Order):
         den = filter_instance.den
         print(den)
         self.assertEqual(len(den), 3)
-
 
     def test_wr(self):
         filter_instance = self.get_one()
