@@ -140,5 +140,5 @@ cython_debug/
 ## custom
 
 .vscode/*
-./SOEvenv/*
+SOEvenv/*
 */ipynb_checkpoints/*
