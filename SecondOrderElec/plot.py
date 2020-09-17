@@ -8,7 +8,7 @@ import numpy as np
 
 
 def plot_time(t, s):
-    """plot s function of t
+    """plot 's' function of 't'
 
     Args:
         t (array_like): time or variable x-axis
@@ -19,7 +19,7 @@ def plot_time(t, s):
 
 
 def plot_bode(w, Tjw):
-    """plot the fresquency reponse
+    """plot the frequency reponse
 
     Args:
         w (array_like): angular velocity (rad/s)
