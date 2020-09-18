@@ -85,7 +85,7 @@ class Second_Order_LTI:
             plot (bool, optional): plot the step reponse. Defaults to True.
 
         Returns:
-            [type]: [description]
+            tuple(ndarray, ndarray): Time values for step response, step response
         """
         t, s = self.lti.step(X0=X0, T=T, N=N)
         if plot == True:
