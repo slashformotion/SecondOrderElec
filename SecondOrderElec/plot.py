@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_time(t, s):
+def plot_time(t, s, *args):
     """plot 's' function of 't'
 
     Args:
@@ -15,6 +15,8 @@ def plot_time(t, s):
         s (array_like): y-axis variable
     """
     plt.plot(t, s)
+    for arg in args:
+        plt.plot(t, arg)
     plt.xlabel("time (s)")
 
 

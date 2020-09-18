@@ -83,7 +83,6 @@ class test_LP(unittest.TestCase, Common_General_Second_Order):
     def test_den(self):
         filter_instance = self.get_one()
         den = filter_instance.den
-        print(den)
         self.assertEqual(len(den), 3)
 
     def test_wr(self):

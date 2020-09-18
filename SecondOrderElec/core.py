@@ -88,10 +88,11 @@ class Second_Order_LTI:
             tuple(ndarray, ndarray): Time values for step response, step response
         """
         t, s = self.lti.step(X0=X0, T=T, N=N)
-        t = np.hstack(([-0.001,-0.00001,0],t))
-        s = np.hstack(([0,0,0],s))
+        t = np.hstack(([-0.001, -0.00001, 0], t))
+        s = np.hstack(([0, 0, 0], s))
+        step = t >= 0
         if plot == True:
-            plot_time(t, s)
+            plot_time(t, s, step)
 
         return t, s
 
@@ -105,7 +106,7 @@ class Second_Order_LTI:
             plot (bool, optional): plot output. Defaults to True.
 
         Returns:
-            tuple(1D ndarray, 1D ndarray, ndarray): Time values for the output, system output, time evolution of the state vector 
+            tuple(1D ndarray, 1D ndarray, ndarray): Time values for the output, system output, time evolution of the state vector
         """
         t, s, x = self.lti.output(U, T, X0=X0)
         if plot == True:
@@ -164,7 +165,7 @@ class General_Second_Order(Second_Order_LTI):
         """Natural frequency
 
         Returns:
-            float: natural frequency (commonly known as w0) 
+            float: natural frequency (commonly known as w0)
         """
         a_2_norm = self.den[0]  # a_2_norm = 1/(w0**2)
         w0 = 1 / np.sqrt(a_2_norm)
@@ -183,8 +184,7 @@ class General_Second_Order(Second_Order_LTI):
         return m
 
     def normalize(self):
-        """normalize the linear system
-        """
+        """normalize the linear system"""
         self.num = self.num / self.den[-1]
         self.den = self.den / self.den[-1]
 
@@ -195,7 +195,7 @@ class LP(Second_Order_LTI):
 
     Args:
         Second_Order_LTI (class): General class for second order LTI
-    
+
     """
 
     type = "LP"
@@ -250,7 +250,7 @@ class BP(Second_Order_LTI):
 
     Args:
         Second_Order_LTI (class):  General class for second order LTI
-    
+
     """
 
     type = "BP"
@@ -322,7 +322,7 @@ class HP(Second_Order_LTI):
 
     Args:
         Second_Order_LTI (class):  General class for second order LTI
-    
+
     """
 
     type = "HP"
@@ -382,7 +382,7 @@ class Notch(Second_Order_LTI):
 
     Args:
         Second_Order_LTI (class):  General class for second order LTI
-    
+
     """
 
     type = "Notch"
