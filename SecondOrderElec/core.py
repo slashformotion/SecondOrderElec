@@ -88,8 +88,11 @@ class Second_Order_LTI:
             tuple(ndarray, ndarray): Time values for step response, step response
         """
         t, s = self.lti.step(X0=X0, T=T, N=N)
+        t = np.hstack(([-0.001,-0.00001,0],t))
+        s = np.hstack(([0,0,0],s))
         if plot == True:
             plot_time(t, s)
+
         return t, s
 
     def output(self, U, T, X0=None, plot=True):
