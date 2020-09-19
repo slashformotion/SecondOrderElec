@@ -22,7 +22,7 @@ pip install SecondOrderElec
 
 ### Documentation
 
-It's on [readthedoc](https://secondorderelec.readthedocs.io/en/latest/).
+It's on [readthedocs](https://secondorderelec.readthedocs.io/en/latest/).
 
 ### Exemples
 
