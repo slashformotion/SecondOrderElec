@@ -1,2 +1,2 @@
-"""THIS FILE IS GENERATED FROM beem SETUP.PY."""
-version = '0.0.3'
+"""THIS FILE IS GENERATED FROM SecondOrderElec SETUP.PY."""
+version = '0.0.4'
