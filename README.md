@@ -39,7 +39,7 @@ import numpy as np
 
 w = np.logspace(1,3,1000)
 
-filter_instance = LP(T0=1, m=1.1, w0=6000)
+filter_instance = LP(T0=1, m=0.1, w0=6000)
 t,s = filter_instance.freqresp(w=w, plot=True)
 ```
 ![Module](static/img/fresqresp_LP_module.svg) ![Argument](static/img/fresqresp_LP_arg.svg)
