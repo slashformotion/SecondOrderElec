@@ -1,6 +1,6 @@
 # Electronic Lib for second order system
 
-![](https://img.shields.io/travis/com/slashformotion/SecondOrderElec/master?label=test%20%28master%29) ![PyPI - Downloads](https://img.shields.io/pypi/dm/SecondOrderElec) ![PyPI](https://img.shields.io/pypi/v/SecondOrderElec) [![Documentation Status](https://readthedocs.org/projects/secondorderelec/badge/?version=latest)](https://secondorderelec.readthedocs.io/en/latest/?badge=latest) 
+[![Continuous Integration](https://github.com/slashformotion/SecondOrderElec/actions/workflows/main.yml/badge.svg)](https://github.com/slashformotion/SecondOrderElec/actions/workflows/main.yml) ![PyPI - Downloads](https://img.shields.io/pypi/dm/SecondOrderElec) ![PyPI](https://img.shields.io/pypi/v/SecondOrderElec) [![Documentation Status](https://readthedocs.org/projects/secondorderelec/badge/?version=latest)](https://secondorderelec.readthedocs.io/en/latest/?badge=latest) 
 
 
 A simple python library for the analysis of second order system.
