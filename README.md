@@ -52,10 +52,6 @@ You will find others exemples [here](https://github.com/slashformotion/SecondOrd
 
 Create an issue [here](https://github.com/slashformotion/SecondOrderElec/issues).
 
-### Acknowledgments
-
-Most of the work is from [Vincent Choqueuse](https://github.com/vincentchoqueuse).
-
 ### Maintainers
 
 - [@vincentchocqueuse](https://github.com/vincentchoqueuse)
